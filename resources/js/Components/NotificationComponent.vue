@@ -15,6 +15,7 @@ const user = usePage().props.auth.user;
 
 function sendNotification() {
     axios.post('/api/notify', {
+        user_id: user.id,
         message: `Hello ${user.name}!`,
     })
     .then(response => {

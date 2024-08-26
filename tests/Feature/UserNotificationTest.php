@@ -43,7 +43,7 @@ class UserNotificationTest extends TestCase
 
         Event::assertDispatched(UserNotificationEvent::class, function ($e) use ($message) {
             return $e->broadcastWith()['message'] === $message &&
-                $e->broadcastWith()['timestamp'] === now()->toDateTimeString();
+                $e->broadcastWith()['timestamp'] === now('Europe/Amsterdam')->toDateTimeString();
         });
     }
 
@@ -51,7 +51,10 @@ class UserNotificationTest extends TestCase
     {
         Sanctum::actingAs(User::factory()->create());
 
-        $response = $this->postJson('/api/notify', ['message' => 'Hello, User!']);
+        $response = $this->postJson('/api/notify', [
+            'user_id' => 1,
+            'message' => 'Hello, User 1!'
+        ]);
 
         $response->assertJson(['message' => 'Notification sent!']);
     }
@@ -62,7 +65,10 @@ class UserNotificationTest extends TestCase
 
         Sanctum::actingAs(User::factory()->create());
 
-        $response = $this->postJson('/api/notify', ['message' => 'Hello, User!']);
+        $response = $this->postJson('/api/notify', [
+            'user_id' => 1,
+            'message' => 'Hello, User 1!'
+        ]);
 
         $response->assertJson(['message' => 'Notification sent!']);
 
@@ -77,7 +83,10 @@ class UserNotificationTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->postJson('/api/notify', ['message' => "Hello, User {$user->id}!"]);
+        $response = $this->postJson('/api/notify', [
+            'user_id' => $user->id,
+            'message' => "Hello, User {$user->id}!"
+        ]);
 
         $response->assertJson(['message' => 'Notification sent!']);
 
