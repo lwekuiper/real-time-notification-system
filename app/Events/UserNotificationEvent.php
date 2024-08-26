@@ -36,7 +36,7 @@ class UserNotificationEvent implements ShouldBroadcastNow
     {
         return [
             'message' => $this->message,
-            'timestamp' => now()->toDateTimeString(),
+            'timestamp' => now('Europe/Amsterdam')->toDateTimeString(),
         ];
     }
 }
