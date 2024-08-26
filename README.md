@@ -1,6 +1,6 @@
 ## Steps
 
-- [ ] Install Laravel Breeze with Vue
+- [x] Install Laravel Breeze with Vue
 - [ ] Set broadcasting to use Pusher Channels
 - [ ] Create event UserNotificationEvent broadcasting on private channel
 - [ ] Create notification trigger through API route
