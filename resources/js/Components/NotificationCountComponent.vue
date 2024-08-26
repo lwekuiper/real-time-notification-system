@@ -1,25 +1,14 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue';
-import { usePage } from '@inertiajs/vue3';
+import { useNotificationsStore } from '@/stores/notifications';
+import { storeToRefs } from 'pinia';
 
-const notificationCount = ref(0);
+const store = useNotificationsStore();
 
-const user = usePage().props.auth.user;
-
-onMounted(async () => {
-    window.Echo.private(`notifications.${user.id}`)
-        .listen('UserNotificationEvent', () => {
-            notificationCount.value++;
-        });
-});
-
-onUnmounted(() => {
-    window.Echo.leave(`notifications.${user.id}`);
-});
+const { unreadNotifications } = storeToRefs(store);
 </script>
 
 <template>
     <div class="absolute top-1/2 -translate-y-6 -right-3 h-6 w-6 flex justify-center items-center bg-red-500 text-xs rounded-full">
-        <span class="text-white">{{ notificationCount }}</span>
+        <span class="text-white">{{ unreadNotifications.length }}</span>
     </div>
 </template>

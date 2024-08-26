@@ -15,8 +15,8 @@ An example Laravel application with a real time notification system built using 
 - [x] Create Vue component NotificationComponent displaying list of notifications with message and timestamp
 - [x] Create Vue component NotificationCount displaying a badge with number of unread (?) notifications
 - [x] Write documentation how to set up and run project
-- [ ] Optimization: Listen for event on parent Vue component and pass down through props
-- [ ] Extra: Make notifications readable?
+- [x] Optimization: Use Pinia to share notifications state between components
+- [x] Extra: Make notifications readable
 - [ ] Extra: Send notifications to other users
 - [ ] Extra: Persist notifications in database
 - [ ] Figure out how to test broadcasting channel authorization
