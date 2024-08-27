@@ -48,6 +48,8 @@ Generate a new application key
 
     php artisan key:generate
 
+Set up a Pusher channel and add the ID, KEY, SECRET and CLUSTER to the .env file
+
 Run the database migrations
 
     php artisan migrate
